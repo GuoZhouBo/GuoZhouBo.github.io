@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://guozhoubo.github.io">
-  <title>Archives | Code Deep</title>
+  <title>Tomcat配置自签SSL | Code Deep</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Code Deep">
-<meta property="og:url" content="https://guozhoubo.github.io/archives/index.html">
+  <meta name="description" content="Tomcat配置自签SSL1. 准备证书密钥存储库Tomcat 目前只能操作 JKS、PKCS11、PKCS12 格式的密钥存储库。JKS 是 Java 标准的“Java 密钥存储库”格式，是通过 keytool 命令行工具创建的。该工具包含在 JDK 中。PKCS12 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。">
+<meta name="keywords" content="Tomcat web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat配置自签SSL">
+<meta property="og:url" content="https://guozhoubo.github.io/2018/07/06/Tomcat配置自签SSL/index.html">
 <meta property="og:site_name" content="Code Deep">
+<meta property="og:description" content="Tomcat配置自签SSL1. 准备证书密钥存储库Tomcat 目前只能操作 JKS、PKCS11、PKCS12 格式的密钥存储库。JKS 是 Java 标准的“Java 密钥存储库”格式，是通过 keytool 命令行工具创建的。该工具包含在 JDK 中。PKCS12 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-04T06:01:13.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code Deep">
+<meta name="twitter:title" content="Tomcat配置自签SSL">
+<meta name="twitter:description" content="Tomcat配置自签SSL1. 准备证书密钥存储库Tomcat 目前只能操作 JKS、PKCS11、PKCS12 格式的密钥存储库。JKS 是 Java 标准的“Java 密钥存储库”格式，是通过 keytool 命令行工具创建的。该工具包含在 JDK 中。PKCS12 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。">
   
     <link rel="alternative" href="/atom.xml" title="Code Deep" type="application/atom+xml">
   
@@ -146,36 +151,83 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Tomcat配置自签SSL" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/06/Tomcat配置自签SSL/" class="archive-article-date">
-  	<time datetime="2018-07-06T05:59:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/06/Tomcat配置自签SSL/">Tomcat配置自签SSL</a>
+    <h1 class="article-title" itemprop="name">
+      Tomcat配置自签SSL
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/07/06/Tomcat配置自签SSL/" class="archive-article-date">
+  	<time datetime="2018-07-06T05:59:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Tomcat配置自签SSL"><a href="#Tomcat配置自签SSL" class="headerlink" title="Tomcat配置自签SSL"></a>Tomcat配置自签SSL</h2><h3 id="1-准备证书密钥存储库"><a href="#1-准备证书密钥存储库" class="headerlink" title="1. 准备证书密钥存储库"></a>1. 准备证书密钥存储库</h3><p>Tomcat 目前只能操作 <code>JKS</code>、<code>PKCS11</code>、<code>PKCS12</code> 格式的密钥存储库。<code>JKS</code> 是 Java 标准的“Java 密钥存储库”格式，是通过 <code>keytool</code> 命令行工具创建的。该工具包含在 JDK 中。<code>PKCS12</code> 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。</p>
+<a id="more"></a>
+<p>密钥存储库中的每一项都通过一个别名字符串来标识。尽管许多密码存储库实现都在处理别名时不区分大小写，但区分大小写的实现也是允许的。比如，<code>PKCS11</code> 规范需要别名是区分大小写的。为了避免别名大小写敏感的问题，不建议使用只有大小写不同的别名。</p>
+<p>为了将现有的证书导入 <code>JKS</code> 密码存储库，请查阅关于 <code>keytool</code> 的相关文档（位于 JDK 文档包里）。注意，OpenSSL 经常会在密码前加上易于理解的注释，但 <code>keytool</code> 并不支持这一点。所以如果证书里的密码数据前面有注释的话，在利用 <code>keytool</code> 导入证书前，一定要清除它们。</p>
+<p>下面这个实例展示的是如何利用终端命令行，从零开始创建一个新的 <code>JKS</code> 密码存储库，该密码库包含一个自签名的证书。</p>
+<p>Windows：</p>
+<p><code>&quot;%JAVA_HOME%\bin\keytool&quot; -genkey -alias tomcat -keyalg RSA</code></p>
+<p>Unix：</p>
+<p><code>$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA</code></p>
+<p>（RSA 算法应该作为首选的安全算法，这同样也能保证与其他服务器和组件的大体的兼容性。)</p>
+<p>该命令将在用户的主目录下创建一个新文件：<code>.keystore</code>。要想指定一个不同的位置或文件名，可以在上述的 <code>keytool</code>命令上添加 <code>-keystore</code> 参数，后跟到达 keystore 文件的完整路径名。你都需要把这个新位置指定到 <code>server.xml</code> 配置文件上，见后文介绍。例如：</p>
+<p>Windows：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;%JAVA_HOME%\bin\keytool&quot; -genkey -alias tomcat -keyalg RSA</span><br><span class="line">  -keystore \path\to\my\keystore</span><br></pre></td></tr></table></figure>
+
+<p>Unix：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA  </span><br><span class="line">  -keystore /path/to/my/keystore</span><br></pre></td></tr></table></figure>
+
+<p>执行该命令后，首先会提示你提供 keystore 的密码。Tomcat 默认使用的密码是 <code>changeit</code>（全部字母都小写），当然你可以指定一个自定义密码（如果你愿意）。同样，你也需要将这个自定义密码在 <code>server.xml</code> 配置文件内进行指定，稍后再予以详述。</p>
+<p>接下来会提示关于证书的一般信息，比如组织、联系人名称，等等。当用户试图在你的应用中访问一个安全页面时，该信息会显示给用户，所以一定要确保所提供的信息与用户所期望看到的内容保持一致。</p>
+<p>最后，还需要输入<strong>密钥密码</strong>（key password），这个密码是这一证书（而不是存储在同一密码存储库文件中的其他证书）的专有密码。<code>keytool</code> 提示会告诉你，如果按下回车键，则自动使用密码存储库 keystore 的密码（建议如此操作）。当然，除了这个密码，你也可以自定义自己的密码。如果选择自定义密码，那么不要忘了在 <code>server.xml</code> 配置文件中指定这一密码。</p>
+<p>如果操作全部正常，我们现在就会得到一个服务器能使用的有证书的密码存储库文件。</p>
+<h3 id="2-编辑-Tomcat-配置文件"><a href="#2-编辑-Tomcat-配置文件" class="headerlink" title="2. 编辑 Tomcat 配置文件"></a>2. 编辑 Tomcat 配置文件</h3><p>为了配置使用 JSSE 的 SSL 连接器，你可能需要清除注释并按照如下的方式来编辑它。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Define a SSL Coyote HTTP/1.1 Connector on port 8443 --&gt;</span><br><span class="line">&lt;Connector</span><br><span class="line">           protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span><br><span class="line">           port=&quot;8443&quot; maxThreads=&quot;200&quot;</span><br><span class="line">           scheme=&quot;https&quot; secure=&quot;true&quot; SSLEnabled=&quot;true&quot;</span><br><span class="line">           keystoreFile=&quot;$&#123;user.home&#125;/.keystore&quot; keystorePass=&quot;changeit&quot;</span><br><span class="line">           clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>一定要确保对所使用的连接器采用正确的属性。BIO、NIO 以及 NIO2 连接器都使用 JSSE，然而APR以及原生的连接器则使用 APR。</p>
+<p><strong>如果在这里，你更改了端口号，那么也应该在 非 SSL 连接器（指的是HTTP和AJP的两个链接器）的 redirectPort 属性值。从而使 Tomcat 能够根据 Servlet 规范，自动对访问带有安全限制（指定需要 SSL）页面的用户进行重定向。</strong></p>
+<p>配置完全部信息后，你应该像往常一样，重新启动 Tomcat，从而能够利用 SSL 来访问任何 Tomcat 所支持的 Web 应用了。比如：</p>
+<p><code>https://localhost:8443/</code></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -187,57 +239,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://guozhoubo.github.io/2018/07/06/Tomcat配置自签SSL/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/04/log4j配置/" class="archive-article-date">
-  	<time datetime="2018-07-04T05:36:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/04/log4j配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">log4j配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/04/log4j配置/">log4j配置</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">log4j web</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -260,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

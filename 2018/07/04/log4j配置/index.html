@@ -9,14 +9,14 @@
   <title>log4j配置 | Code Deep</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="log4j配置Log4j 的配置包括在配置文件中指定 Level、定义 Appender 和指明 Layout。 Log4j.properties 文件是 Log4j 的配置文件，属性以键值对的形式定义。默认情况下，LogManager 会在 CLASSPATH 中寻找 Log4j.properties 文件。  根日志的级别定义为 DEBUG，并将名为 X 的 appender 添加其上。 将名">
-<meta name="keywords" content="web">
+<meta name="keywords" content="log4j web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="log4j配置">
 <meta property="og:url" content="https://guozhoubo.github.io/2018/07/04/log4j配置/index.html">
 <meta property="og:site_name" content="Code Deep">
 <meta property="og:description" content="log4j配置Log4j 的配置包括在配置文件中指定 Level、定义 Appender 和指明 Layout。 Log4j.properties 文件是 Log4j 的配置文件，属性以键值对的形式定义。默认情况下，LogManager 会在 CLASSPATH 中寻找 Log4j.properties 文件。  根日志的级别定义为 DEBUG，并将名为 X 的 appender 添加其上。 将名">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-04T05:38:30.709Z">
+<meta property="og:updated_time" content="2019-07-04T05:59:58.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="log4j配置">
 <meta name="twitter:description" content="log4j配置Log4j 的配置包括在配置文件中指定 Level、定义 Appender 和指明 Layout。 Log4j.properties 文件是 Log4j 的配置文件，属性以键值对的形式定义。默认情况下，LogManager 会在 CLASSPATH 中寻找 Log4j.properties 文件。  根日志的级别定义为 DEBUG，并将名为 X 的 appender 添加其上。 将名">
@@ -48,7 +48,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/img/路飞.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">guo_sming</a></h1>
@@ -60,7 +60,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/archives/index.html">归档</a></li>
 	        
 			</ul>
 		</nav>
@@ -102,7 +102,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/img/路飞.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">guo_sming</h1>
@@ -136,7 +136,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 50%"><a href="/archives/index.html">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -176,9 +176,10 @@
 <ul>
 <li>根日志的级别定义为 <strong>DEBUG</strong>，并将名为 X 的 appender 添加其上。</li>
 <li>将名为 X 的 appender 设置为合法的 appender。</li>
-<li>设置 appender X 的 layout。</li>
+<li>设置 appender X 的 layout。<a id="more"></a>
+<h3 id="Log4j-properties-的语法"><a href="#Log4j-properties-的语法" class="headerlink" title="Log4j.properties 的语法"></a>Log4j.properties 的语法</h3></li>
 </ul>
-<h3 id="Log4j-properties-的语法"><a href="#Log4j-properties-的语法" class="headerlink" title="Log4j.properties 的语法"></a>Log4j.properties 的语法</h3><p>为 appender X 定义的 <em>Log4j.properties</em> 的语法如下：</p>
+<p>为 appender X 定义的 <em>Log4j.properties</em> 的语法如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Define the root logger with appender X</span><br><span class="line">Log4j.rootLogger = DEBUG, X</span><br><span class="line"></span><br><span class="line"># Set the appender named X to be a File appender</span><br><span class="line">Log4j.appender.X=org.apache.Log4j.FileAppender</span><br><span class="line"></span><br><span class="line"># Define the layout for X appender</span><br><span class="line">Log4j.appender.X.layout=org.apache.Log4j.PatternLayout</span><br><span class="line">Log4j.appender.X.layout.conversionPattern=%m%n</span><br></pre></td></tr></table></figure>
 
 <p>其中 <strong>[level]</strong> 是日志输出级别，共有5级(从高到低)：</p>
@@ -246,7 +247,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">log4j web</a>
         		</li>
       		
 		</ul>
@@ -314,6 +315,20 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/07/06/Tomcat配置自签SSL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Tomcat配置自签SSL
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -426,7 +441,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color1">Tomcat web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">log4j web</a>
               </li>
             
             <div class="clearfix"></div>

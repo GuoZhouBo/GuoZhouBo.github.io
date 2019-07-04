@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/img/路飞.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">guo_sming</a></h1>
@@ -55,7 +55,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
+				<li><a href="/archives/index.html">归档</a></li>
 	        
 			</ul>
 		</nav>
@@ -97,7 +97,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/img/路飞.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">guo_sming</h1>
@@ -131,7 +131,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 50%"><a href="/archives/index.html">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -147,6 +147,80 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Tomcat配置自签SSL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/06/Tomcat配置自签SSL/">Tomcat配置自签SSL</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/06/Tomcat配置自签SSL/" class="archive-article-date">
+  	<time datetime="2018-07-06T05:59:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Tomcat配置自签SSL"><a href="#Tomcat配置自签SSL" class="headerlink" title="Tomcat配置自签SSL"></a>Tomcat配置自签SSL</h2><h3 id="1-准备证书密钥存储库"><a href="#1-准备证书密钥存储库" class="headerlink" title="1. 准备证书密钥存储库"></a>1. 准备证书密钥存储库</h3><p>Tomcat 目前只能操作 <code>JKS</code>、<code>PKCS11</code>、<code>PKCS12</code> 格式的密钥存储库。<code>JKS</code> 是 Java 标准的“Java 密钥存储库”格式，是通过 <code>keytool</code> 命令行工具创建的。该工具包含在 JDK 中。<code>PKCS12</code> 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Tomcat web</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/06/Tomcat配置自签SSL/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-log4j配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -173,43 +247,8 @@
 <ul>
 <li>根日志的级别定义为 <strong>DEBUG</strong>，并将名为 X 的 appender 添加其上。</li>
 <li>将名为 X 的 appender 设置为合法的 appender。</li>
-<li>设置 appender X 的 layout。</li>
-</ul>
-<h3 id="Log4j-properties-的语法"><a href="#Log4j-properties-的语法" class="headerlink" title="Log4j.properties 的语法"></a>Log4j.properties 的语法</h3><p>为 appender X 定义的 <em>Log4j.properties</em> 的语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Define the root logger with appender X</span><br><span class="line">Log4j.rootLogger = DEBUG, X</span><br><span class="line"></span><br><span class="line"># Set the appender named X to be a File appender</span><br><span class="line">Log4j.appender.X=org.apache.Log4j.FileAppender</span><br><span class="line"></span><br><span class="line"># Define the layout for X appender</span><br><span class="line">Log4j.appender.X.layout=org.apache.Log4j.PatternLayout</span><br><span class="line">Log4j.appender.X.layout.conversionPattern=%m%n</span><br></pre></td></tr></table></figure>
-
-<p>其中 <strong>[level]</strong> 是日志输出级别，共有5级(从高到低)：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FATAL ERROR WARN INFO DEBUG</span><br></pre></td></tr></table></figure>
-
-<p><strong>Appender</strong> ：为日志输出目的地，Log4j提供的appender有以下几种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">org.apache.log4j.ConsoleAppender（控制台），</span><br><span class="line">org.apache.log4j.FileAppender（文件），</span><br><span class="line">org.apache.log4j.DailyRollingFileAppender（每天产生一个日志文件），</span><br><span class="line">org.apache.log4j.RollingFileAppender（文件大小到达指定尺寸的时候产生一个新的文件），</span><br><span class="line">org.apache.log4j.WriterAppender（将日志信息以流格式发送到任意指定的地方）</span><br></pre></td></tr></table></figure>
-
-<p><strong>Layout</strong>：日志输出格式，Log4j提供的layout有以下几种：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">org.apache.log4j.HTMLLayout（以HTML表格形式布局），</span><br><span class="line">org.apache.log4j.PatternLayout（可以灵活地指定布局模式），</span><br><span class="line">org.apache.log4j.SimpleLayout（包含日志信息的级别和信息字符串），</span><br><span class="line">org.apache.log4j.TTCCLayout（包含日志产生的时间、线程、类别等等信息）</span><br></pre></td></tr></table></figure>
-
-<p><strong>打印参数</strong> ：Log4J采用类似C语言中的printf函数的打印格式格式化日志信息，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%m   输出代码中指定的消息</span><br><span class="line">%p   输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL </span><br><span class="line">%r   输出自应用启动到输出该log信息耗费的毫秒数 </span><br><span class="line">%c   输出所属的类目，通常就是所在类的全名 </span><br><span class="line">%t   输出产生该日志事件的线程名 </span><br><span class="line">%n   输出一个回车换行符，Windows平台为“\r\n”，Unix平台为“\n” </span><br><span class="line">%d   输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d&#123;yyy MMM dd HH:mm:ss , SSS&#125;，输出类似：2002年10月18日  22 ： 10 ： 28 ， 921  </span><br><span class="line">%l   输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数。举例：              Testlog4.main(TestLog4.java: 10 )</span><br></pre></td></tr></table></figure>
-
-<h3 id="定义根Logger"><a href="#定义根Logger" class="headerlink" title="定义根Logger"></a>定义根Logger</h3><p>rootLogger 负责处理日志记录的大部分操作。</p>
-<p>其语法为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log4j.rootLogger = [ level ] , appenderName, appenderName, ...</span><br></pre></td></tr></table></figure>
-
-<p>其中，level 是日志记录的优先级，分为OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL或者自定义的级别。</p>
-<p>Log4j建议只使用四个级别，优先级从高到低分别是ERROR、WARN、INFO、DEBUG。通过在这里定义的级别，您可以控制到应用程序中相应级别的日志信息的开关。</p>
-<p>比如在这里定义了INFO级别，只有等于及高于这个级别的才进行处理，则应用程序中所有DEBUG级别的日志信息将不被打印出来。</p>
-<p>ALL: 打印所有的日志，</p>
-<p>OFF: 关闭所有的日志输出。</p>
-<p>appenderName 就是指定日志信息输出到哪个地方，可同时指定多个输出目的地。</p>
-<h3 id="定义非根Logger"><a href="#定义非根Logger" class="headerlink" title="定义非根Logger"></a>定义非根Logger</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log4j.logger.loggerName1 = [ level ], appendName1,…appendNameN  </span><br><span class="line">……  </span><br><span class="line">log4j.logger.loggerNameM = [ level ], appendName1, …appendNameN</span><br></pre></td></tr></table></figure>
-
-<p>我们可以定义任意个非根记录器。</p>
-<h3 id="在代码中调用Logger类"><a href="#在代码中调用Logger类" class="headerlink" title="在代码中调用Logger类"></a>在代码中调用Logger类</h3><p>要取得rootLogger对象可通过Logger.getRootLogger()函数，要取得非rootLogger可通过Logger.getLogger()函数。</p>
-<h3 id="配置日志信息输出目的地-Appender"><a href="#配置日志信息输出目的地-Appender" class="headerlink" title="配置日志信息输出目的地 Appender"></a>配置日志信息输出目的地 Appender</h3><p>Appender 负责控制日志记录操作的输出。</p>
-<p>其语法为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">log4j.appender.appenderName = fully.qualified.name.of.appender.class  </span><br><span class="line">  </span><br><span class="line">log4j.appender.appenderName.option1 = value1  </span><br><span class="line">…  </span><br><span class="line">log4j.appender.appenderName.optionN = valueN</span><br></pre></td></tr></table></figure>
-
-<p><strong>这里的appenderName为在log4j.rootLogger里定义的，可任意起名</strong>。</p>
-<h3 id="文件配置样例"><a href="#文件配置样例" class="headerlink" title="文件配置样例"></a>文件配置样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">log4j.rootLogger=DEBUG,A1,R  </span><br><span class="line">#log4j.rootLogger=INFO,A1,R  </span><br><span class="line"></span><br><span class="line"># ConsoleAppender 输出  </span><br><span class="line">log4j.appender.A1=org.apache.log4j.ConsoleAppender  </span><br><span class="line">log4j.appender.A1.layout=org.apache.log4j.PatternLayout  </span><br><span class="line">log4j.appender.A1.layout.ConversionPattern=%-d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%c]-[%p] %m%n  </span><br><span class="line">  </span><br><span class="line"># File 输出 一天一个文件,输出路径可以定制,一般在根路径下  </span><br><span class="line">log4j.appender.R=org.apache.log4j.DailyRollingFileAppender  </span><br><span class="line">log4j.appender.R.File=blog_log.txt  </span><br><span class="line">log4j.appender.R.MaxFileSize=500KB  </span><br><span class="line">log4j.appender.R.MaxBackupIndex=10  </span><br><span class="line">log4j.appender.R.layout=org.apache.log4j.PatternLayout  </span><br><span class="line">log4j.appender.R.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss,SSS&#125; [%t] [%c] [%p] - %m%n</span><br><span class="line"></span><br><span class="line"># 按照不同级别进行分类</span><br><span class="line">log4j.logger.cn.edu.hdu=stdout, info, error, warn</span><br><span class="line"></span><br><span class="line">### stdout ###</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.stdout.Target=System.out</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=%d&#123;ABSOLUTE&#125; %5p %c&#123;2&#125;:%L - %m%n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### info ####</span><br><span class="line">log4j.appender.info=org.apache.log4j.RollingFileAppender</span><br><span class="line">log4j.appender.info.File=$&#123;catalina.home&#125;/logs/info.log</span><br><span class="line">log4j.appender.info.MaxFileSize = 10MB</span><br><span class="line">log4j.appender.info.MaxBackupIndex = 20</span><br><span class="line">log4j.appender.info.Threshold = INFO</span><br><span class="line">log4j.appender.info.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.info.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; %5p %c&#123;2&#125; - %m%n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### warn ####</span><br><span class="line">log4j.appender.warn=org.apache.log4j.RollingFileAppender</span><br><span class="line">log4j.appender.warn.File=$&#123;catalina.home&#125;/logs/warn.log</span><br><span class="line">log4j.appender.warn.MaxFileSize = 10MB</span><br><span class="line">log4j.appender.warn.MaxBackupIndex = 20</span><br><span class="line">log4j.appender.warn.Threshold = WARN </span><br><span class="line">log4j.appender.warn.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.warn.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; %5p %c&#123;2&#125; - %m%n</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### error ####</span><br><span class="line">log4j.appender.error=org.apache.log4j.RollingFileAppender</span><br><span class="line">log4j.appender.error.File=$&#123;catalina.home&#125;/logs/error.log</span><br><span class="line">log4j.appender.error.MaxFileSize = 5MB</span><br><span class="line">log4j.appender.error.MaxBackupIndex = 10</span><br><span class="line">log4j.appender.error.Threshold = ERROR </span><br><span class="line">log4j.appender.error.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.error.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125; %5p %c&#123;2&#125;:%L - %m%n</span><br></pre></td></tr></table></figure>
+<li>设置 appender X 的 layout。
+        
       
 
       
@@ -222,7 +261,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">web</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">log4j web</a>
         		</li>
       		
 		</ul>
@@ -347,7 +386,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color1">Tomcat web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">log4j web</a>
               </li>
             
             <div class="clearfix"></div>
