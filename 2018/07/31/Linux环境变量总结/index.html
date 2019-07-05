@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Code Deep">
 <meta property="og:description" content="Linux环境变量总结Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类一、按照生命周期来分，Linux环境变量可以分为两类：1、永久的：需要用户修改相关的配置文件，变量永久生效。2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。 二、按照作用域来分，Linux环">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-05T01:06:23.799Z">
+<meta property="og:updated_time" content="2019-07-05T01:11:04.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux环境变量总结">
 <meta name="twitter:description" content="Linux环境变量总结Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类一、按照生命周期来分，Linux环境变量可以分为两类：1、永久的：需要用户修改相关的配置文件，变量永久生效。2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。 二、按照作用域来分，Linux环">
@@ -345,6 +345,8 @@
         <h2 id="Linux环境变量总结"><a href="#Linux环境变量总结" class="headerlink" title="Linux环境变量总结"></a>Linux环境变量总结</h2><p>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
 <h3 id="Linux环境变量分类"><a href="#Linux环境变量分类" class="headerlink" title="Linux环境变量分类"></a>Linux环境变量分类</h3><p>一、按照生命周期来分，Linux环境变量可以分为两类：<br>1、永久的：需要用户修改相关的配置文件，变量永久生效。<br>2、临时的：用户利用export命令，在当前终端下声明环境变量，<strong>关闭Shell终端失效</strong>。</p>
 <p>二、按照作用域来分，Linux环境变量可以分为：<br>1、系统环境变量：系统环境变量对该系统中所有用户都有效。<br>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
+<a id="more"></a>
+
 <h3 id="Linux设置环境变量的方法"><a href="#Linux设置环境变量的方法" class="headerlink" title="Linux设置环境变量的方法"></a>Linux设置环境变量的方法</h3><p>一、在<code>/etc/profile</code>文件中添加变量 <strong>对所有用户生效（永久的）</strong><br>用vim在文件<code>/etc/profile</code>文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。<br>例如：编辑<code>/etc/profile</code>文件，添加<code>CLASSPATH</code>变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile    </span><br><span class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</span><br></pre></td></tr></table></figure>
 
