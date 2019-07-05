@@ -491,19 +491,263 @@
 
       
         
-          <p>Linux环境变量总结</p>
-<p>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
-<p>Linux环境变量分类</p>
-<p>一、按照生命周期来分，Linux环境变量可以分为两类：</p>
-<p>1、永久的：需要用户修改相关的配置文件，变量永久生效。</p>
-<p>2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/31/Linux环境变量总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h2 id="Linux环境变量总结"><a href="#Linux环境变量总结" class="headerlink" title="Linux环境变量总结"></a>Linux环境变量总结</h2><p>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
+<h3 id="Linux环境变量分类"><a href="#Linux环境变量分类" class="headerlink" title="Linux环境变量分类"></a>Linux环境变量分类</h3><p>一、按照生命周期来分，Linux环境变量可以分为两类：<br>1、永久的：需要用户修改相关的配置文件，变量永久生效。<br>2、临时的：用户利用export命令，在当前终端下声明环境变量，<strong>关闭Shell终端失效</strong>。</p>
+<p>二、按照作用域来分，Linux环境变量可以分为：<br>1、系统环境变量：系统环境变量对该系统中所有用户都有效。<br>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
+<h3 id="Linux设置环境变量的方法"><a href="#Linux设置环境变量的方法" class="headerlink" title="Linux设置环境变量的方法"></a>Linux设置环境变量的方法</h3><p>一、在<code>/etc/profile</code>文件中添加变量 <strong>对所有用户生效（永久的）</strong><br>用vim在文件<code>/etc/profile</code>文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。<br>例如：编辑<code>/etc/profile</code>文件，添加<code>CLASSPATH</code>变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile    </span><br><span class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>修改文件后要想马上生效还要运行<code>source /etc/profile</code>不然只能在下次重进此用户时生效，当此命令行无效时，则将电脑重启。</p>
+<p>二、在用户目录下的<code>.bash_profile</code>文件中增加变量 【<strong>对单一用户生效（永久的）</strong>】<br>用<code>vim ~/.bash_profile</code>文件中增加变量，改变量仅会对当前用户有效，并且是“永久的”。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash.profile</span><br><span class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>修改文件后要想马上生效还要运行<code>$ source ~/.bash_profile</code>不然只能在下次重进此用户时生效。</p>
+<p>三、直接运行export命令定义变量 【<strong>只对当前shell（BASH）有效（临时的）</strong>】<br>在shell的命令行下直接使用<code>export 变量名=变量值</code><br>定义变量，该变量只在当前的shell（BASH）或其子shell（BASH）下是有效的，shell关闭了，变量也就失效了，再打开新shell时就没有这个变量，需要使用的话还需要重新定义。</p>
+<h3 id="Linux环境变量使用"><a href="#Linux环境变量使用" class="headerlink" title="Linux环境变量使用"></a>Linux环境变量使用</h3><p>一、Linux中常见的环境变量有：</p>
+<p>PATH：指定命令的搜索路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PATH声明用法：</span><br><span class="line">PATH=$PAHT:&lt;PATH 1&gt;:&lt;PATH 2&gt;:&lt;PATH 3&gt;:--------:&lt; PATH n &gt;</span><br><span class="line">export PATH</span><br><span class="line">你可以自己加上指定的路径，中间用冒号隔开。环境变量更改后，在用户下次登陆时生效。</span><br><span class="line">可以利用echo $PATH查看当前当前系统PATH路径。</span><br></pre></td></tr></table></figure>
+
+<p>HOME：指定用户的主工作目录（即用户登陆到Linux系统中时，默认的目录）。<br>HISTSIZE：指保存历史命令记录的条数。<br>LOGNAME：指当前用户的登录名。<br>HOSTNAME：指主机的名称，许多应用程序如果要用到主机名的话，通常是从这个环境变量中来取得的<br>SHELL：指当前用户用的是哪种Shell。<br>LANG/LANGUGE：和语言相关的环境变量，使用多种语言的用户可以修改此环境变量。<br>MAIL：指当前用户的邮件存放目录。</p>
+<p><strong>注意：</strong>上述变量的名字并不固定，如HOSTNAME在某些Linux系统中可能设置成HOST</p>
+<p>二、Linux也提供了修改和查看环境变量的命令，下面通过几个实例来说明：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo 显示某个环境变量值 echo $PATH</span><br><span class="line">export 设置一个新的环境变量 export HELLO=”hello” (可以无引号)</span><br><span class="line">env 显示所有环境变量</span><br><span class="line">set 显示本地定义的shell变量</span><br><span class="line">unset 清除环境变量 unset HELLO</span><br><span class="line">readonly 设置只读环境变量 readonly HELLO</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://guozhoubo.github.io/2018/07/31/Ubuntu16-04安装Oracle11g/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guo_sming">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/img/路飞.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code Deep">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/Ubuntu16-04安装Oracle11g/" itemprop="url">Ubuntu16.04安装Oracle11g</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T18:43:33+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Ubuntu16-04安装Oracle11g"><a href="#Ubuntu16-04安装Oracle11g" class="headerlink" title="Ubuntu16.04安装Oracle11g"></a>Ubuntu16.04安装Oracle11g</h2><h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>Ubuntu：Ubuntu 16.04 LTS amd 64位</p>
+<p>oracle：oracle11g</p>
+<h3 id="创建oracle用户"><a href="#创建oracle用户" class="headerlink" title="创建oracle用户"></a>创建oracle用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser oracle   # 创建oracle用户</span><br><span class="line">sudo gedit /etc/sudoers  # 给oracle用户配置sudo权限</span><br><span class="line">oracle ALL=(ALL)ALL</span><br></pre></td></tr></table></figure>
+
+<p>创建完用户之后，重启计算机，使用oracle用户登录。</p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install automake </span><br><span class="line">sudo apt-get install autotools-dev</span><br><span class="line">sudo apt-get install binutils</span><br><span class="line">sudo apt-get install bzip2</span><br><span class="line">sudo apt-get install elfutils</span><br><span class="line">sudo apt-get install expat</span><br><span class="line">sudo apt-get install gawk</span><br><span class="line">sudo apt-get install gcc</span><br><span class="line">sudo apt-get install gcc-multilib</span><br><span class="line">sudo apt-get install g++-multilib</span><br><span class="line">sudo apt-get install ia32-libs</span><br><span class="line">sudo apt-get install ksh</span><br><span class="line">sudo apt-get install less</span><br><span class="line">sudo apt-get install lesstif2</span><br><span class="line">sudo apt-get install lesstif2-dev</span><br><span class="line">sudo apt-get install lib32z1</span><br><span class="line">sudo apt-get install libaio1</span><br><span class="line">sudo apt-get install libaio-dev</span><br><span class="line">sudo apt-get install libc6-dev</span><br><span class="line">sudo apt-get install libc6-dev-i386</span><br><span class="line">sudo apt-get install libc6-i386 </span><br><span class="line">sudo apt-get install libelf-dev</span><br><span class="line">sudo apt-get install libltdl-dev</span><br><span class="line">sudo apt-get install libmotif4</span><br><span class="line">sudo apt-get install libodbcinstq4-1 libodbcinstq4-1:i386</span><br><span class="line">sudo apt-get install libpth-dev</span><br><span class="line">sudo apt-get install libpthread-stubs0</span><br><span class="line">sudo apt-get install libpthread-stubs0-dev</span><br><span class="line">sudo apt-get install libstdc++5</span><br><span class="line">sudo apt-get install lsb-cxx</span><br><span class="line">sudo apt-get install make</span><br><span class="line">sudo apt-get install openssh-server</span><br><span class="line">sudo apt-get install pdksh</span><br><span class="line">sudo apt-get install rlwrap</span><br><span class="line">sudo apt-get install rpm</span><br><span class="line">sudo apt-get install sysstat</span><br><span class="line">sudo apt-get install unixodbc</span><br><span class="line">sudo apt-get install unixodbc-dev</span><br><span class="line">sudo apt-get install unzip</span><br><span class="line">sudo apt-get install x11-utils</span><br><span class="line">sudo apt-get install zlibc</span><br></pre></td></tr></table></figure>
+
+<p>谨慎起见，都安装一遍。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 以下包安装不成功，先略过</span><br><span class="line">sudo apt-get install lesstif2</span><br><span class="line">sudo apt-get install lesstif2-dev</span><br><span class="line">sudo apt-get install libpthread-stubs0</span><br><span class="line">sudo apt-get install lsb-cxx</span><br><span class="line">sudo apt-get install pdksh</span><br></pre></td></tr></table></figure>
+
+<p>如果仍有部分依赖无法获取，可以更新源文件/etc/apt/sources.list。</p>
+<p>因为ubuntu的官方源并不全，特别是安装ia32-libs包的时候没有，首先我们备份源文件，然后把以下源增加到源列表：（删除原来的所有源，然后把下面的源粘贴进去）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list_back1   #备份</span><br></pre></td></tr></table></figure>
+
+<p>把/etc/apt/sources.list源文件的内容替换成以下源：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ precise-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ precise-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ precise-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ precise-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://extras.ubuntu.com/ubuntu trusty main</span><br><span class="line">deb-src http://extras.ubuntu.com/ubuntu trusty main</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu/ raring main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">#163源：</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">#阿里源：</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyuncs.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyuncs.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyuncs.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyuncs.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyuncs.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyuncs.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyuncs.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyuncs.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyuncs.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyuncs.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>替换完之后，执行以下命令进行更新：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查系统变量"><a href="#检查系统变量" class="headerlink" title="检查系统变量"></a>检查系统变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/sbin/sysctl -a | grep sem</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep shm</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep file-max</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep aio-max</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep ip_local_port_range</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep rmem_default</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep rmem_max</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep wmem_default</span><br><span class="line"></span><br><span class="line">/sbin/sysctl -a | grep wmem_max</span><br></pre></td></tr></table></figure>
+
+<p>然后根据上面命令中得到的参数值在/etc/sysctl.conf中增加对应数据，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fs.aio-max-nr = 1048576</span><br><span class="line">fs.file-max = 6815744</span><br><span class="line">kernel.shmall = 2097152</span><br><span class="line">kernel.shmmax = 536870912</span><br><span class="line">kernel.shmmni = 4096</span><br><span class="line">kernel.sem = 250 32000 100 128</span><br><span class="line">net.ipv4.ip_local_port_range = 9000 65500</span><br><span class="line">net.core.rmem_default = 262144</span><br><span class="line">net.core.rmem_max = 4194304</span><br><span class="line">net.core.wmem_default = 262144</span><br><span class="line">net.core.wmem_max = 1048586</span><br></pre></td></tr></table></figure>
+
+<p>运行一下命令更新内核参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl –p</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加对用户的内核限制"><a href="#添加对用户的内核限制" class="headerlink" title="添加对用户的内核限制"></a>添加对用户的内核限制</h3><p>添加对oracle用户的内核限制在 /etc/security/limits.conf 文件中增加以下数据,注:其中oracle是第一步创建的用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">oracle              soft    nproc   2047</span><br><span class="line"></span><br><span class="line">oracle              hard    nproc   16384</span><br><span class="line"></span><br><span class="line">oracle              soft    nofile  1024</span><br><span class="line"></span><br><span class="line">oracle              hard    nofile  65536</span><br><span class="line"></span><br><span class="line">oracle              soft    stack   10240</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看-etc-pam-d-login，增加以下行（若有则不用增加）："><a href="#查看-etc-pam-d-login，增加以下行（若有则不用增加）：" class="headerlink" title="查看/etc/pam.d/login，增加以下行（若有则不用增加）："></a>查看/etc/pam.d/login，增加以下行（若有则不用增加）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session required pam_limits.so </span><br><span class="line">同样检查/etc/pam.d/su，没有以下行就自己加上：</span><br><span class="line">session required pam_limits.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建安装文件夹"><a href="#创建安装文件夹" class="headerlink" title="创建安装文件夹"></a>创建安装文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/tools/oracle11g</span><br></pre></td></tr></table></figure>
+
+<h3 id="为Oracle配置环境变量"><a href="#为Oracle配置环境变量" class="headerlink" title="为Oracle配置环境变量"></a>为Oracle配置环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># oracle安装目录，第6步创建的文件夹</span><br><span class="line">export ORACLE_BASE=/home/oracle/tools/oracle11g</span><br><span class="line"># 网上说可以随便写</span><br><span class="line">export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_1</span><br><span class="line"># 数据库的sid</span><br><span class="line">export ORACLE_SID=orcl</span><br><span class="line">export ORACLE_UNQNAME=orcl</span><br><span class="line"># 默认字符集</span><br><span class="line">export NLS_LANG=.AL32UTF8</span><br><span class="line"># 环境变量</span><br><span class="line">export PATH=$&#123;PATH&#125;:$&#123;ORACLE_HOME&#125;/bin/:$ORACLE_HOME/lib64;</span><br><span class="line"># 这里的配置建议加入到/etc/profile文件中</span><br></pre></td></tr></table></figure>
+
+<h3 id="欺骗Oracle的安装程序"><a href="#欺骗Oracle的安装程序" class="headerlink" title="欺骗Oracle的安装程序"></a>欺骗Oracle的安装程序</h3><p>Oracle本身并不支持ubuntu来安装，所以要进行欺骗oracle的安装程序（sudo执行）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/lib64</span><br><span class="line">ln -s /etc /etc/rc.d</span><br><span class="line">ln -s /lib/x86_64-linux-gnu/libgcc_s.so.1 /lib64/</span><br><span class="line">ln -s /usr/bin/awk /bin/awk</span><br><span class="line">ln -s /usr/bin/basename /bin/basename</span><br><span class="line">ln -s /usr/bin/rpm /bin/rpm</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/libc_nonshared.a /usr/lib64/</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/libpthread_nonshared.a /usr/lib64/</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /lib64/</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /usr/lib64/</span><br><span class="line">echo &apos;Red Hat Linux release 5&apos; &gt; /etc/redhat-release</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装oracle"><a href="#安装oracle" class="headerlink" title="安装oracle"></a>安装oracle</h3><p>下载地址：<a href="http://www.oracle.com/technetwork/cn/database/enterprise-edition/downloads/index.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/cn/database/enterprise-edition/downloads/index.html</a></p>
+<ol>
+<li>上传下载好的oracle压缩文件到/home/oracle/tools/oracle11g目录下。</li>
+<li>进入home/oracle/tools/oracle11g目录，执行# unzip linux.x64_11gR2_database_1of2.zip和# unzip linux.x64_11gR2_database_2of2.zip，解压的文件在/home/oracle/tools/oracle11g/database目录中。</li>
+<li>进入database文件夹，为runInstaller文件赋予可执行权限</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 runInstaller</span><br><span class="line">./runInstaller  # 运行安装程序</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装过程可能遇到的问题"><a href="#安装过程可能遇到的问题" class="headerlink" title="安装过程可能遇到的问题"></a>安装过程可能遇到的问题</h3><ol>
+<li>Oracle安装界面乱码解决方法 </li>
+</ol>
+<p>执行:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export NLS_LANG=AMERICAN_AMERICA.UTF8</span><br><span class="line">export LC_ALL=C</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>Error in invoking target ‘install’ of makefile ‘/home/dong/tools/oracle11g/product/11.2.0/dbhome_1/ctx/lib/ins_ctx.mk’. See ‘/home/dong/tools/oraInventory/logs/installActions2015-01-22_09-39-03AM.log’ for details.</p>
+<p>这个问题不用管，直接continue。</p>
+</li>
+<li><p>Error in invoking target ‘agent nmhs’ of makefile ‘/home/oracle/tools/oracle11g/product/11.2.0/dbhome_1/sysman/lib/ins_emagent.mk’</p>
+<p><strong>解决方法：</strong></p>
+<p>打开新的终端窗口<br>使用vi命令，打开/home/oracle/tools/oracle11g/product/11.2.0/dbhome_1/sysman/lib/ins_emagent.mk文件，将<code>$(MK_EMAGENT_NMECTL)</code>修改成<code>$(MK_EMAGENT_NMECTL)-lnnz11</code> 即可。</p>
+<p>然后点击retry ，接着往下执行</p>
+</li>
+<li><p>Error in invoking target ‘all_no_orcl’ of makefile ‘/home/dong/tools/oracle11g/product/11.2.0/dbhome_1/rdbms/lib/ins_rdbms.mk’. See ‘/home/dong/tools/Inventory/logs/installActions2016-03-19_02-37-44PM.log’ for details.</p>
+<p><strong>解决办法：</strong></p>
+<p>打开一个新的终端，输入如下四个命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;s/^\(TNSLSNR_LINKLINE.*\$(TNSLSNR_OFILES)\) \(\$(LINKTTLIBS)\)/\1 -Wl,--no-as-needed \2/g&apos; $ORACLE_HOME/network/lib/env_network.mk</span><br><span class="line"></span><br><span class="line">sed -i &apos;s/^\(ORACLE_LINKLINE.*\$(ORACLE_LINKER)\) \(\$(PL_FLAGS)\)/\1 -Wl,--no-as-needed \2/g&apos; $ORACLE_HOME/rdbms/lib/env_rdbms.mk</span><br><span class="line"></span><br><span class="line">sed -i &apos;s/^\(\$LD \$LD_RUNTIME\) \(\$LD_OPT\)/\1 -Wl,--no-as-needed \2/g&apos; $ORACLE_HOME/bin/genorasdksh</span><br><span class="line"></span><br><span class="line">sed -i &apos;s/^\(\s*\)\(\$(OCRLIBS_DEFAULT)\)/\1 -Wl,--no-as-needed \2/g&apos; $ORACLE_HOME/srvm/lib/ins_srvm.mk</span><br></pre></td></tr></table></figure>
+
+<p>然后在图形界面点击‘Retry’就能继续安装了。</p>
+</li>
+<li><p>然后按照安装程序提示最后执行两个脚本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo  /home/oracle/tools/oraInventory/orainstRoot.sh </span><br><span class="line">sudo /home/oracle/tools/oracle11g/product/11.2.0/dbhome_1/root.sh</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="配置监听服务"><a href="#配置监听服务" class="headerlink" title="配置监听服务"></a>配置监听服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修改以下两个文件：</span><br><span class="line">/home/oracle/tools/oracle11g/product/11.2.0/dbhome_1/network/admin/listener.ora</span><br><span class="line">/home/oracle/tools/oracle11g/product/11.2.0/dbhome_1/network/admin/tnsnames.ora</span><br><span class="line">将HOST=localhost改成HOST=主机名</span><br></pre></td></tr></table></figure>
+
+<p>完成之后，执行命令lsnrctl start启动监听服务，可以用lsnrctl status查看监听状态。</p>
+<h3 id="创建表空间与用户"><a href="#创建表空间与用户" class="headerlink" title="创建表空间与用户"></a>创建表空间与用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlplus /nolog</span><br><span class="line">SQL&gt; conn /as sysdba</span><br><span class="line">SQL&gt; startup # 启动数据库</span><br><span class="line">SQL&gt; create tablespace xxx datafile &apos;/home/oracle/tools/oracle11g/oradata/xxx.dbf&apos; size 200m autoextend on next 50m maxsize unlimited;</span><br><span class="line">SQL&gt; create user username indentified by password default tablespace xxx;</span><br><span class="line">SQL&gt; grant dba to username;</span><br></pre></td></tr></table></figure>
+
+<p>创建之后，建议用Navicat进行远程连接。</p>
+<h3 id="开机自启配置"><a href="#开机自启配置" class="headerlink" title="开机自启配置"></a>开机自启配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/oratab</span><br><span class="line">把文件中的N改成Y，即&quot;orcl:/opt/oracle/product/db:N&quot;修改为&quot;orcl:/opt/oracle/product/db:Y&quot;</span><br></pre></td></tr></table></figure>
+
+<p>将以下代码写入到/etc/init.d/oracledb文件中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">### BEGIN INIT INFO</span><br><span class="line"># Provides:          oracle</span><br><span class="line"># Required-Start:    $local_fs $remote_fs $network $syslog</span><br><span class="line"># Required-Stop:     $local_fs $remote_fs $network $syslog</span><br><span class="line"># Default-Start:     2 3 4 5</span><br><span class="line"># Default-Stop:      0 1 6</span><br><span class="line"># Short-Description: starts the oracle daemon</span><br><span class="line"># Description:       starts oracle using start-stop-daemon</span><br><span class="line">### END INIT INFO</span><br><span class="line"> </span><br><span class="line">ORA_HOME=/home/oracle/tools/oracle11g/product/11.2.0/dbhome_1/</span><br><span class="line">ORACLE_SID=orcl</span><br><span class="line">PATH=$PATH:$ORACLE_HOME/bin</span><br><span class="line">ORA_OWNER=oracle</span><br><span class="line"> </span><br><span class="line">if [ ! -f $ORA_HOME/bin/dbstart ]</span><br><span class="line">then</span><br><span class="line">echo &quot;Oracle startup: cannot start&quot;</span><br><span class="line">exit</span><br><span class="line">fi</span><br><span class="line">case &quot;$1&quot; in</span><br><span class="line">&apos;start&apos;)</span><br><span class="line"># Start the Oracle databases:</span><br><span class="line">echo &quot;Starting Oracle Databases ... &quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Starting Oracle Databases as part of system up.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">su - $ORA_OWNER -c &quot;$ORA_HOME/bin/dbstart&quot; &gt;&gt;/var/log/oracle</span><br><span class="line">echo &quot;Done&quot;</span><br><span class="line"># Start the Listener:</span><br><span class="line">echo &quot;Starting Oracle Listeners ... &quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Starting Oracle Listeners as part of system up.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">su - $ORA_OWNER -c &quot;$ORA_HOME/bin/lsnrctl start&quot; &gt;&gt;/var/log/oracle</span><br><span class="line">echo &quot;Done.&quot;</span><br><span class="line"> </span><br><span class="line">echo &quot;Starting emctl dbconsole ... &quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Starting emctl dbconsole as part of system up.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">su - $ORA_OWNER -c &quot;$ORA_HOME/bin/emctl start dbconsole&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;Done.&quot;</span><br><span class="line"> </span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Finished.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">touch /var/lock/subsys/oracle</span><br><span class="line">;;</span><br><span class="line">&apos;stop&apos;)</span><br><span class="line"># Stop the Oracle Listener:</span><br><span class="line">echo &quot;Stoping Oracle Listeners ... &quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Stoping Oracle Listener as part of system down.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">su - $ORA_OWNER -c &quot;$ORA_HOME/bin/lsnrctl stop&quot; &gt;&gt;/var/log/oracle</span><br><span class="line">echo &quot;Done.&quot;</span><br><span class="line">rm -f /var/lock/subsys/oracle</span><br><span class="line"> </span><br><span class="line"># Stop the Oracle Database:</span><br><span class="line">echo &quot;Stoping Oracle Databases ... &quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Stoping Oracle Databases as part of system down.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">su - $ORA_OWNER -c &quot;$ORA_HOME/bin/dbshut&quot; &gt;&gt;/var/log/oracle </span><br><span class="line">echo &quot;Done.&quot;</span><br><span class="line"> </span><br><span class="line">echo &quot;Stoping emctl dbconsole ... &quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Starting emctl dbconsole as part of system up.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">su - $ORA_OWNER -c &quot;$ORA_HOME/bin/emctl stop dbconsole&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;Done.&quot;</span><br><span class="line">echo &quot;&quot;</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">date +&quot; %T %a %D : Finished.&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">echo &quot;-------------------------------------------------&quot; &gt;&gt; /var/log/oracle</span><br><span class="line">;;</span><br><span class="line">&apos;restart&apos;)</span><br><span class="line">$0 stop</span><br><span class="line">$0 start</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+<p>保存文件，修改文件权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chmod 755 /etc/init.d/oracledb</span><br></pre></td></tr></table></figure>
+
+<p>注册服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo update-rc.d oracledb defaults 99</span><br></pre></td></tr></table></figure>
+
+
+          
         
       
     </div>
@@ -834,6 +1078,474 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://guozhoubo.github.io/2018/04/18/Vim的简单实用命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guo_sming">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/img/路飞.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code Deep">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/18/Vim的简单实用命令/" itemprop="url">Vim的简单实用命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T16:19:41+08:00">
+                2018-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Vim的简单实用命令"><a href="#Vim的简单实用命令" class="headerlink" title="Vim的简单实用命令"></a>Vim的简单实用命令</h2><h3 id="Vim三种模式"><a href="#Vim三种模式" class="headerlink" title="Vim三种模式"></a>Vim三种模式</h3><ul>
+<li>一般指令模式：以vi打开一个文件就直接进入一般指令模式了（预设模式）。在这个模式中，可以用上下左右按键来移动游标，可以使用删除某个字或删除整行来处理文件内容，也可以使用复制粘贴。</li>
+</ul>
+<ul>
+<li>编辑模式：等到按下i,I,o,O,a,A,r,R等任何一个字母之后才会进入编辑模式。</li>
+</ul>
+<ul>
+<li>指令列命令模式：在一般指令模式中输入：，？，/三个中的任意一个，即可进入该模式。</li>
+</ul>
+<h3 id="一般指令模式可用的指令"><a href="#一般指令模式可用的指令" class="headerlink" title="一般指令模式可用的指令"></a>一般指令模式可用的指令</h3><table>
+<thead>
+<tr>
+<th>移動游標的方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h 或 向左方向鍵(←)</td>
+<td>游標向左移動一個字元</td>
+</tr>
+<tr>
+<td>j 或 向下方向鍵(↓)</td>
+<td>游標向下移動一個字元</td>
+</tr>
+<tr>
+<td>k 或 向上方向鍵(↑)</td>
+<td>游標向上移動一個字元</td>
+</tr>
+<tr>
+<td>l 或 向右方向鍵(→)</td>
+<td>游標向右移動一個字元</td>
+</tr>
+<tr>
+<td>如果你將右手放在鍵盤上的話，你會發現 hjkl 是排列在一起的，因此可以使用這四個按鈕來移動游標。 如果想要進行多次移動的話，例如向下移動 30 列，可以使用 “30j” 或 “30↓” 的組合按鍵， 亦即加上想要進行的次數(數字)後，按下動作即可！</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>[Ctrl] + [f]</strong></td>
+<td><strong>屏幕『向下』移動一頁，相當於 [Page Down]按鍵 (常用)</strong></td>
+</tr>
+<tr>
+<td><strong>[Ctrl] + [b]</strong></td>
+<td><strong>屏幕『向上』移動一頁，相當於 [Page Up] 按鍵 (常用)</strong></td>
+</tr>
+<tr>
+<td>[Ctrl] + [d]</td>
+<td>屏幕『向下』移動半頁</td>
+</tr>
+<tr>
+<td>[Ctrl] + [u]</td>
+<td>屏幕『向上』移動半頁</td>
+</tr>
+<tr>
+<td>+</td>
+<td>游標移動到非空白字元的下一列</td>
+</tr>
+<tr>
+<td>-</td>
+<td>游標移動到非空白字元的上一列</td>
+</tr>
+<tr>
+<td>n<space></space></td>
+<td>那個 n 表示『數字』，例如 20 。按下數字後再按空白鍵，游標會向右移動這一列的 n 個字元。例如 20<space> 則游標會向後面移動 20 個字元距離。</space></td>
+</tr>
+<tr>
+<td>0 或功能鍵[Home]</td>
+<td>這是數字『 0 』：移動到這一列的最前面字元處 (常用)</td>
+</tr>
+<tr>
+<td>$ 或功能鍵[End]</td>
+<td>移動到這一列的最後面字元處(常用)</td>
+</tr>
+<tr>
+<td>H</td>
+<td>游標移動到這個螢幕的最上方那一列的第一個字元</td>
+</tr>
+<tr>
+<td>M</td>
+<td>游標移動到這個螢幕的中央那一列的第一個字元</td>
+</tr>
+<tr>
+<td>L</td>
+<td>游標移動到這個螢幕的最下方那一列的第一個字元</td>
+</tr>
+<tr>
+<td><strong>G</strong></td>
+<td><strong>移動到這個檔案的最後一列(常用)</strong></td>
+</tr>
+<tr>
+<td>nG</td>
+<td>n 為數字。移動到這個檔案的第 n 列。例如 20G 則會移動到這個檔案的第 20 列(可配合 :set nu)</td>
+</tr>
+<tr>
+<td><strong>gg</strong></td>
+<td><strong>移動到這個檔案的第一列，相當於 1G 啊！ (常用)</strong></td>
+</tr>
+<tr>
+<td><strong>n<enter></enter></strong></td>
+<td><strong>n 為數字。游標向下移動 n 列(常用)</strong></td>
+</tr>
+<tr>
+<td>搜尋與取代</td>
+<td></td>
+</tr>
+<tr>
+<td>/word</td>
+<td>向游標之下尋找一個名稱為 word 的字串。例如要在檔案內搜尋 vbird 這個字串，就輸入 /vbird 即可！ (常用)</td>
+</tr>
+<tr>
+<td>?word</td>
+<td>向游標之上尋找一個字串名稱為 word 的字串。</td>
+</tr>
+<tr>
+<td>n</td>
+<td>這個 n 是英文按鍵。代表『重複前一個搜尋的動作』。舉例來說， 如果剛剛我們執行 /vbird 去向下搜尋 vbird 這個字串，則按下 n 後，會向下繼續搜尋下一個名稱為 vbird 的字串。如果是執行 ?vbird 的話，那麼按下 n 則會向上繼續搜尋名稱為 vbird 的字串！</td>
+</tr>
+<tr>
+<td>N</td>
+<td>這個 N 是英文按鍵。與 n 剛好相反，為『反向』進行前一個搜尋動作。 例如 /vbird 後，按下 N 則表示『向上』搜尋 vbird 。</td>
+</tr>
+<tr>
+<td>使用 /word 配合 n 及 N 是非常有幫助的！可以讓你重複的找到一些你搜尋的關鍵字！</td>
+<td></td>
+</tr>
+<tr>
+<td>:n1,n2s/word1/word2/g</td>
+<td>n1 與 n2 為數字。在第 n1 與 n2 列之間尋找 word1 這個字串，並將該字串取代為 word2 ！舉例來說，在 100 到 200 列之間搜尋 vbird 並取代為 VBIRD 則：『:100,200s/vbird/VBIRD/g』。(常用)</td>
+</tr>
+<tr>
+<td>:1,$s/word1/word2/g</td>
+<td>從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！(常用)</td>
+</tr>
+<tr>
+<td>:1,$s/word1/word2/gc</td>
+<td>從第一列到最後一列尋找 word1 字串，並將該字串取代為 word2 ！且在取代前顯示提示字元給使用者確認 (confirm) 是否需要取代！(常用)</td>
+</tr>
+<tr>
+<td>刪除、複製與貼上</td>
+<td></td>
+</tr>
+<tr>
+<td>x, X</td>
+<td>在一列字當中，x 為向後刪除一個字元 (相當於 [del] 按鍵)， X 為向前刪除一個字元(相當於 [backspace] 亦即是倒退鍵) (常用)</td>
+</tr>
+<tr>
+<td>nx</td>
+<td>n 為數字，連續向後刪除 n 個字元。舉例來說，我要連續刪除 10 個字元， 『10x』。</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>刪除游標所在的那一整列(常用)</td>
+</tr>
+<tr>
+<td>ndd</td>
+<td>n 為數字。刪除游標所在的向下 n 列，例如 20dd 則是刪除 20 列 (常用)</td>
+</tr>
+<tr>
+<td>d1G</td>
+<td>刪除游標所在到第一列的所有資料</td>
+</tr>
+<tr>
+<td>dG</td>
+<td>刪除游標所在到最後一列的所有資料</td>
+</tr>
+<tr>
+<td>d$</td>
+<td>刪除游標所在處，到該列的最後一個字元</td>
+</tr>
+<tr>
+<td>d0</td>
+<td>那個是數字的 0 ，刪除游標所在處，到該列的最前面一個字元</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>複製游標所在的那一列(常用)</td>
+</tr>
+<tr>
+<td>nyy</td>
+<td>n 為數字。複製游標所在的向下 n 列，例如 20yy 則是複製 20 列(常用)</td>
+</tr>
+<tr>
+<td>y1G</td>
+<td>複製游標所在列到第一列的所有資料</td>
+</tr>
+<tr>
+<td>yG</td>
+<td>複製游標所在列到最後一列的所有資料</td>
+</tr>
+<tr>
+<td>y0</td>
+<td>複製游標所在的那個字元到該列行首的所有資料</td>
+</tr>
+<tr>
+<td>y$</td>
+<td>複製游標所在的那個字元到該列行尾的所有資料</td>
+</tr>
+<tr>
+<td>p, P</td>
+<td>p 為將已複製的資料在游標下一列貼上，P 則為貼在游標上一列！ 舉例來說，我目前游標在第 20 列，且已經複製了 10 列資料。則按下 p 後， 那 10 列資料會貼在原本的 20 列之後，亦即由 21 列開始貼。但如果是按下 P 呢？ 那麼原本的第 20 列會被推到變成 30 列。 (常用)</td>
+</tr>
+<tr>
+<td>J</td>
+<td>將游標所在列與下一列的資料結合成同一列</td>
+</tr>
+<tr>
+<td>c</td>
+<td>重複刪除多個資料，例如向下刪除 10 列，[ 10cj ]</td>
+</tr>
+<tr>
+<td><strong>u</strong></td>
+<td><strong>复原前一个动作。(常用)</strong></td>
+</tr>
+<tr>
+<td><strong>[Ctrl]+r</strong></td>
+<td><strong>重做上一个动作。(常用)</strong></td>
+</tr>
+<tr>
+<td>這個 u 與 [Ctrl]+r 是很常用的指令！一個是復原，另一個則是重做一次～ 利用這兩個功能按鍵，你的編輯，嘿嘿！很快樂的啦！</td>
+<td></td>
+</tr>
+<tr>
+<td>.</td>
+<td>不要懷疑！這就是小數點！意思是重複前一個動作的意思。 如果你想要重複刪除、重複貼上等等動作，按下小數點『.』就好了！ (常用)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>第二部份：一般指令模式切換到編輯模式的可用的按鈕說明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>進入插入或取代的編輯模式</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>i, I</td>
+<td>進入插入模式(Insert mode)：i 為『從目前游標所在處插入』， I 為『在目前所在列的第一個非空白字元處開始插入』。 (常用)</td>
+</tr>
+<tr>
+<td>a, A</td>
+<td>進入插入模式(Insert mode)：a 為『從目前游標所在的下一個字元處開始插入』， A 為『從游標所在列的最後一個字元處開始插入』。(常用)</td>
+</tr>
+<tr>
+<td>o, O</td>
+<td>進入插入模式(Insert mode)：這是英文字母 o 的大小寫。o 為『在目前游標所在的下一列處插入新的一列』； O 為在目前游標所在處的上一列插入新的一列！(常用)</td>
+</tr>
+<tr>
+<td>r, R</td>
+<td>進入取代模式(Replace mode)：r 只會取代游標所在的那一個字元一次；R會一直取代游標所在的文字，直到按下 ESC 為止；(常用)</td>
+</tr>
+<tr>
+<td>上面這些按鍵中，在 vi 畫面的左下角處會出現『–INSERT–』或『–REPLACE–』的字樣。 由名稱就知道該動作了吧！！特別注意的是，我們上面也提過了，你想要在檔案裡面輸入字元時， 一定要在左下角處看到 INSERT 或 REPLACE 才能輸入喔！</td>
+<td></td>
+</tr>
+<tr>
+<td>[Esc]</td>
+<td>退出編輯模式，回到一般指令模式中(常用)</td>
+</tr>
+</tbody></table>
+<ul>
+<li>第三部份：一般指令模式切換到指令列模式的可用按鈕說明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指令列模式的儲存、離開等指令</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:w</td>
+<td>將編輯的資料寫入硬碟檔案中(常用)</td>
+</tr>
+<tr>
+<td>:w!</td>
+<td>若檔案屬性為『唯讀』時，強制寫入該檔案。不過，到底能不能寫入， 還是跟你對該檔案的檔案權限有關啊！</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>離開 vi (常用)</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>若曾修改過檔案，又不想儲存，使用 ! 為強制離開不儲存檔案。</td>
+</tr>
+<tr>
+<td>注意一下啊，那個驚嘆號 (!) 在 vi 當中，常常具有『強制』的意思～</td>
+<td></td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>儲存後離開，若為 :wq! 則為強制儲存後離開 (常用)</td>
+</tr>
+<tr>
+<td>ZZ</td>
+<td>這是大寫的 Z 喔！若檔案沒有更動，則不儲存離開，若檔案已經被更動過，則儲存後離開！</td>
+</tr>
+<tr>
+<td>:w [filename]</td>
+<td>將編輯的資料儲存成另一個檔案（類似另存新檔）</td>
+</tr>
+<tr>
+<td>:r [filename]</td>
+<td>在編輯的資料中，讀入另一個檔案的資料。亦即將 『filename』 這個檔案內容加到游標所在列後面</td>
+</tr>
+<tr>
+<td>:n1,n2 w [filename]</td>
+<td>將 n1 到 n2 的內容儲存成 filename 這個檔案。</td>
+</tr>
+<tr>
+<td>:! command</td>
+<td>暫時離開 vi 到指令列模式下執行 command 的顯示結果！例如『:! ls /home』即可在 vi 當中察看 /home 底下以 ls 輸出的檔案資訊！</td>
+</tr>
+<tr>
+<td>vim 環境的變更</td>
+<td></td>
+</tr>
+<tr>
+<td>:set nu</td>
+<td>顯示行號，設定之後，會在每一列的字首顯示該列的行號</td>
+</tr>
+<tr>
+<td>:set nonu</td>
+<td>與 set nu 相反，為取消行號！</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -882,7 +1594,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -904,7 +1616,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

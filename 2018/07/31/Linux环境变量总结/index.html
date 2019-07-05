@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Linux环境变量总结 Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类 一、按照生命周期来分，Linux环境变量可以分为两类： 1、永久的：需要用户修改相关的配置文件，变量永久生效。 2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。">
+<meta name="description" content="Linux环境变量总结Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类一、按照生命周期来分，Linux环境变量可以分为两类：1、永久的：需要用户修改相关的配置文件，变量永久生效。2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。 二、按照作用域来分，Linux环">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux环境变量总结">
 <meta property="og:url" content="https://guozhoubo.github.io/2018/07/31/Linux环境变量总结/index.html">
 <meta property="og:site_name" content="Code Deep">
-<meta property="og:description" content="Linux环境变量总结 Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类 一、按照生命周期来分，Linux环境变量可以分为两类： 1、永久的：需要用户修改相关的配置文件，变量永久生效。 2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。">
+<meta property="og:description" content="Linux环境变量总结Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类一、按照生命周期来分，Linux环境变量可以分为两类：1、永久的：需要用户修改相关的配置文件，变量永久生效。2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。 二、按照作用域来分，Linux环">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-05T01:02:14.178Z">
+<meta property="og:updated_time" content="2019-07-05T01:06:23.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux环境变量总结">
-<meta name="twitter:description" content="Linux环境变量总结 Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类 一、按照生命周期来分，Linux环境变量可以分为两类： 1、永久的：需要用户修改相关的配置文件，变量永久生效。 2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。">
+<meta name="twitter:description" content="Linux环境变量总结Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类一、按照生命周期来分，Linux环境变量可以分为两类：1、永久的：需要用户修改相关的配置文件，变量永久生效。2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。 二、按照作用域来分，Linux环">
 
 
 
@@ -342,52 +342,28 @@
       
 
       
-        <p>Linux环境变量总结</p>
-<p>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
-<p>Linux环境变量分类</p>
-<p>一、按照生命周期来分，Linux环境变量可以分为两类：</p>
-<p>1、永久的：需要用户修改相关的配置文件，变量永久生效。</p>
-<p>2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。</p>
-<a id="more"></a>
+        <h2 id="Linux环境变量总结"><a href="#Linux环境变量总结" class="headerlink" title="Linux环境变量总结"></a>Linux环境变量总结</h2><p>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
+<h3 id="Linux环境变量分类"><a href="#Linux环境变量分类" class="headerlink" title="Linux环境变量分类"></a>Linux环境变量分类</h3><p>一、按照生命周期来分，Linux环境变量可以分为两类：<br>1、永久的：需要用户修改相关的配置文件，变量永久生效。<br>2、临时的：用户利用export命令，在当前终端下声明环境变量，<strong>关闭Shell终端失效</strong>。</p>
+<p>二、按照作用域来分，Linux环境变量可以分为：<br>1、系统环境变量：系统环境变量对该系统中所有用户都有效。<br>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
+<h3 id="Linux设置环境变量的方法"><a href="#Linux设置环境变量的方法" class="headerlink" title="Linux设置环境变量的方法"></a>Linux设置环境变量的方法</h3><p>一、在<code>/etc/profile</code>文件中添加变量 <strong>对所有用户生效（永久的）</strong><br>用vim在文件<code>/etc/profile</code>文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。<br>例如：编辑<code>/etc/profile</code>文件，添加<code>CLASSPATH</code>变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/profile    </span><br><span class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</span><br></pre></td></tr></table></figure>
 
-<p>二、按照作用域来分，Linux环境变量可以分为：</p>
-<p>1、系统环境变量：系统环境变量对该系统中所有用户都有效。</p>
-<p>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
-<p>Linux设置环境变量的方法</p>
-<p>一、在/etc/profile文件中添加变量 对所有用户生效（永久的）</p>
-<p>用vim在文件/etc/profile文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。</p>
-<p>例如：编辑/etc/profile文件，添加CLASSPATH变量</p>
-<pre><code>vim /etc/profile    
-export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</code></pre><p>注意：修改文件后要想马上生效还要运行source /etc/profile不然只能在下次重进此用户时生效，当此命令行无效时，则将电脑重启。</p>
-<p>二、在用户目录下的.bash_profile文件中增加变量 【对单一用户生效（永久的）】</p>
-<p>用vim ~/.bash_profile文件中增加变量，改变量仅会对当前用户有效，并且是“永久的”。</p>
-<pre><code>vim ~/.bash.profile
-export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</code></pre><p>注意：修改文件后要想马上生效还要运行$ source ~/.bash_profile不然只能在下次重进此用户时生效。</p>
-<p>三、直接运行export命令定义变量 【只对当前shell（BASH）有效（临时的）】</p>
-<p>在shell的命令行下直接使用export 变量名=变量值</p>
-<p>定义变量，该变量只在当前的shell（BASH）或其子shell（BASH）下是有效的，shell关闭了，变量也就失效了，再打开新shell时就没有这个变量，需要使用的话还需要重新定义。</p>
-<p>Linux环境变量使用</p>
-<p>一、Linux中常见的环境变量有：</p>
+<p><strong>注意：</strong>修改文件后要想马上生效还要运行<code>source /etc/profile</code>不然只能在下次重进此用户时生效，当此命令行无效时，则将电脑重启。</p>
+<p>二、在用户目录下的<code>.bash_profile</code>文件中增加变量 【<strong>对单一用户生效（永久的）</strong>】<br>用<code>vim ~/.bash_profile</code>文件中增加变量，改变量仅会对当前用户有效，并且是“永久的”。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash.profile</span><br><span class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>修改文件后要想马上生效还要运行<code>$ source ~/.bash_profile</code>不然只能在下次重进此用户时生效。</p>
+<p>三、直接运行export命令定义变量 【<strong>只对当前shell（BASH）有效（临时的）</strong>】<br>在shell的命令行下直接使用<code>export 变量名=变量值</code><br>定义变量，该变量只在当前的shell（BASH）或其子shell（BASH）下是有效的，shell关闭了，变量也就失效了，再打开新shell时就没有这个变量，需要使用的话还需要重新定义。</p>
+<h3 id="Linux环境变量使用"><a href="#Linux环境变量使用" class="headerlink" title="Linux环境变量使用"></a>Linux环境变量使用</h3><p>一、Linux中常见的环境变量有：</p>
 <p>PATH：指定命令的搜索路径</p>
-<pre><code>PATH声明用法：
-PATH=$PAHT:&lt;PATH 1&gt;:&lt;PATH 2&gt;:&lt;PATH 3&gt;:--------:&lt; PATH n &gt;
-export PATH
-你可以自己加上指定的路径，中间用冒号隔开。环境变量更改后，在用户下次登陆时生效。
-可以利用echo $PATH查看当前当前系统PATH路径。</code></pre><p>HOME：指定用户的主工作目录（即用户登陆到Linux系统中时，默认的目录）。</p>
-<p>HISTSIZE：指保存历史命令记录的条数。</p>
-<p>LOGNAME：指当前用户的登录名。</p>
-<p>HOSTNAME：指主机的名称，许多应用程序如果要用到主机名的话，通常是从这个环境变量中来取得的</p>
-<p>SHELL：指当前用户用的是哪种Shell。</p>
-<p>LANG/LANGUGE：和语言相关的环境变量，使用多种语言的用户可以修改此环境变量。</p>
-<p>MAIL：指当前用户的邮件存放目录。</p>
-<p>注意：上述变量的名字并不固定，如HOSTNAME在某些Linux系统中可能设置成HOST</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PATH声明用法：</span><br><span class="line">PATH=$PAHT:&lt;PATH 1&gt;:&lt;PATH 2&gt;:&lt;PATH 3&gt;:--------:&lt; PATH n &gt;</span><br><span class="line">export PATH</span><br><span class="line">你可以自己加上指定的路径，中间用冒号隔开。环境变量更改后，在用户下次登陆时生效。</span><br><span class="line">可以利用echo $PATH查看当前当前系统PATH路径。</span><br></pre></td></tr></table></figure>
+
+<p>HOME：指定用户的主工作目录（即用户登陆到Linux系统中时，默认的目录）。<br>HISTSIZE：指保存历史命令记录的条数。<br>LOGNAME：指当前用户的登录名。<br>HOSTNAME：指主机的名称，许多应用程序如果要用到主机名的话，通常是从这个环境变量中来取得的<br>SHELL：指当前用户用的是哪种Shell。<br>LANG/LANGUGE：和语言相关的环境变量，使用多种语言的用户可以修改此环境变量。<br>MAIL：指当前用户的邮件存放目录。</p>
+<p><strong>注意：</strong>上述变量的名字并不固定，如HOSTNAME在某些Linux系统中可能设置成HOST</p>
 <p>二、Linux也提供了修改和查看环境变量的命令，下面通过几个实例来说明：</p>
-<pre><code>echo 显示某个环境变量值 echo $PATH
-export 设置一个新的环境变量 export HELLO=”hello” (可以无引号)
-env 显示所有环境变量
-set 显示本地定义的shell变量
-unset 清除环境变量 unset HELLO
-readonly 设置只读环境变量 readonly HELLO</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo 显示某个环境变量值 echo $PATH</span><br><span class="line">export 设置一个新的环境变量 export HELLO=”hello” (可以无引号)</span><br><span class="line">env 显示所有环境变量</span><br><span class="line">set 显示本地定义的shell变量</span><br><span class="line">unset 清除环境变量 unset HELLO</span><br><span class="line">readonly 设置只读环境变量 readonly HELLO</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -417,8 +393,8 @@ readonly 设置只读环境变量 readonly HELLO</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/06/Tomcat配置自签SSL/" rel="next" title="Tomcat配置自签SSL">
-                <i class="fa fa-chevron-left"></i> Tomcat配置自签SSL
+              <a href="/2018/07/31/Ubuntu16-04安装Oracle11g/" rel="next" title="Ubuntu16.04安装Oracle11g">
+                <i class="fa fa-chevron-left"></i> Ubuntu16.04安装Oracle11g
               </a>
             
           </div>
@@ -481,8 +457,17 @@ readonly 设置只读环境变量 readonly HELLO</code></pre>
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -499,7 +484,7 @@ readonly 设置只读环境变量 readonly HELLO</code></pre>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -521,7 +506,7 @@ readonly 设置只读环境变量 readonly HELLO</code></pre>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -544,6 +529,22 @@ readonly 设置只读环境变量 readonly HELLO</code></pre>
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux环境变量总结"><span class="nav-number">1.</span> <span class="nav-text">Linux环境变量总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux环境变量分类"><span class="nav-number">1.1.</span> <span class="nav-text">Linux环境变量分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux设置环境变量的方法"><span class="nav-number">1.2.</span> <span class="nav-text">Linux设置环境变量的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux环境变量使用"><span class="nav-number">1.3.</span> <span class="nav-text">Linux环境变量使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
