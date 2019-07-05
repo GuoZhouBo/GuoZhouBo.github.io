@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Tomcat,">
+  <meta name="keywords" content="Linux,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Tomcat配置自签SSL1. 准备证书密钥存储库Tomcat 目前只能操作 JKS、PKCS11、PKCS12 格式的密钥存储库。JKS 是 Java 标准的“Java 密钥存储库”格式，是通过 keytool 命令行工具创建的。该工具包含在 JDK 中。PKCS12 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。">
-<meta name="keywords" content="Tomcat">
+<meta name="description" content="Linux环境变量总结 Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类 一、按照生命周期来分，Linux环境变量可以分为两类： 1、永久的：需要用户修改相关的配置文件，变量永久生效。 2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tomcat配置自签SSL">
-<meta property="og:url" content="https://guozhoubo.github.io/2018/07/06/Tomcat配置自签SSL/index.html">
+<meta property="og:title" content="Linux环境变量总结">
+<meta property="og:url" content="https://guozhoubo.github.io/2018/07/31/Linux环境变量总结/index.html">
 <meta property="og:site_name" content="Code Deep">
-<meta property="og:description" content="Tomcat配置自签SSL1. 准备证书密钥存储库Tomcat 目前只能操作 JKS、PKCS11、PKCS12 格式的密钥存储库。JKS 是 Java 标准的“Java 密钥存储库”格式，是通过 keytool 命令行工具创建的。该工具包含在 JDK 中。PKCS12 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。">
+<meta property="og:description" content="Linux环境变量总结 Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类 一、按照生命周期来分，Linux环境变量可以分为两类： 1、永久的：需要用户修改相关的配置文件，变量永久生效。 2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-04T07:12:12.253Z">
+<meta property="og:updated_time" content="2019-07-05T01:02:14.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tomcat配置自签SSL">
-<meta name="twitter:description" content="Tomcat配置自签SSL1. 准备证书密钥存储库Tomcat 目前只能操作 JKS、PKCS11、PKCS12 格式的密钥存储库。JKS 是 Java 标准的“Java 密钥存储库”格式，是通过 keytool 命令行工具创建的。该工具包含在 JDK 中。PKCS12 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。">
+<meta name="twitter:title" content="Linux环境变量总结">
+<meta name="twitter:description" content="Linux环境变量总结 Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。 Linux环境变量分类 一、按照生命周期来分，Linux环境变量可以分为两类： 1、永久的：需要用户修改相关的配置文件，变量永久生效。 2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://guozhoubo.github.io/2018/07/06/Tomcat配置自签SSL/">
+  <link rel="canonical" href="https://guozhoubo.github.io/2018/07/31/Linux环境变量总结/">
 
 
 
 
 
-  <title>Tomcat配置自签SSL | Code Deep</title>
+  <title>Linux环境变量总结 | Code Deep</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://guozhoubo.github.io/2018/07/06/Tomcat配置自签SSL/">
+    <link itemprop="mainEntityOfPage" href="https://guozhoubo.github.io/2018/07/31/Linux环境变量总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="guo_sming">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Tomcat配置自签SSL</h1>
+          <h1 class="post-title" itemprop="name headline">Linux环境变量总结</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-06T13:59:17+08:00">
-                2018-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T19:00:09+08:00">
+                2018-07-31
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web后端/" itemprop="url" rel="index">
-                    <span itemprop="name">web后端</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -342,35 +342,52 @@
       
 
       
-        <h2 id="Tomcat配置自签SSL"><a href="#Tomcat配置自签SSL" class="headerlink" title="Tomcat配置自签SSL"></a>Tomcat配置自签SSL</h2><h3 id="1-准备证书密钥存储库"><a href="#1-准备证书密钥存储库" class="headerlink" title="1. 准备证书密钥存储库"></a>1. 准备证书密钥存储库</h3><p>Tomcat 目前只能操作 <code>JKS</code>、<code>PKCS11</code>、<code>PKCS12</code> 格式的密钥存储库。<code>JKS</code> 是 Java 标准的“Java 密钥存储库”格式，是通过 <code>keytool</code> 命令行工具创建的。该工具包含在 JDK 中。<code>PKCS12</code> 格式一种互联网标准，可以通过 OpenSSL 和 Microsoft 的 Key-Manager 来。</p>
+        <p>Linux环境变量总结</p>
+<p>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
+<p>Linux环境变量分类</p>
+<p>一、按照生命周期来分，Linux环境变量可以分为两类：</p>
+<p>1、永久的：需要用户修改相关的配置文件，变量永久生效。</p>
+<p>2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。</p>
 <a id="more"></a>
-<p>密钥存储库中的每一项都通过一个别名字符串来标识。尽管许多密码存储库实现都在处理别名时不区分大小写，但区分大小写的实现也是允许的。比如，<code>PKCS11</code> 规范需要别名是区分大小写的。为了避免别名大小写敏感的问题，不建议使用只有大小写不同的别名。</p>
-<p>为了将现有的证书导入 <code>JKS</code> 密码存储库，请查阅关于 <code>keytool</code> 的相关文档（位于 JDK 文档包里）。注意，OpenSSL 经常会在密码前加上易于理解的注释，但 <code>keytool</code> 并不支持这一点。所以如果证书里的密码数据前面有注释的话，在利用 <code>keytool</code> 导入证书前，一定要清除它们。</p>
-<p>下面这个实例展示的是如何利用终端命令行，从零开始创建一个新的 <code>JKS</code> 密码存储库，该密码库包含一个自签名的证书。</p>
-<p>Windows：</p>
-<p><code>&quot;%JAVA_HOME%\bin\keytool&quot; -genkey -alias tomcat -keyalg RSA</code></p>
-<p>Unix：</p>
-<p><code>$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA</code></p>
-<p>（RSA 算法应该作为首选的安全算法，这同样也能保证与其他服务器和组件的大体的兼容性。)</p>
-<p>该命令将在用户的主目录下创建一个新文件：<code>.keystore</code>。要想指定一个不同的位置或文件名，可以在上述的 <code>keytool</code>命令上添加 <code>-keystore</code> 参数，后跟到达 keystore 文件的完整路径名。你都需要把这个新位置指定到 <code>server.xml</code> 配置文件上，见后文介绍。例如：</p>
-<p>Windows：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;%JAVA_HOME%\bin\keytool&quot; -genkey -alias tomcat -keyalg RSA</span><br><span class="line">  -keystore \path\to\my\keystore</span><br></pre></td></tr></table></figure>
 
-<p>Unix：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA  </span><br><span class="line">  -keystore /path/to/my/keystore</span><br></pre></td></tr></table></figure>
-
-<p>执行该命令后，首先会提示你提供 keystore 的密码。Tomcat 默认使用的密码是 <code>changeit</code>（全部字母都小写），当然你可以指定一个自定义密码（如果你愿意）。同样，你也需要将这个自定义密码在 <code>server.xml</code> 配置文件内进行指定，稍后再予以详述。</p>
-<p>接下来会提示关于证书的一般信息，比如组织、联系人名称，等等。当用户试图在你的应用中访问一个安全页面时，该信息会显示给用户，所以一定要确保所提供的信息与用户所期望看到的内容保持一致。</p>
-<p>最后，还需要输入<strong>密钥密码</strong>（key password），这个密码是这一证书（而不是存储在同一密码存储库文件中的其他证书）的专有密码。<code>keytool</code> 提示会告诉你，如果按下回车键，则自动使用密码存储库 keystore 的密码（建议如此操作）。当然，除了这个密码，你也可以自定义自己的密码。如果选择自定义密码，那么不要忘了在 <code>server.xml</code> 配置文件中指定这一密码。</p>
-<p>如果操作全部正常，我们现在就会得到一个服务器能使用的有证书的密码存储库文件。</p>
-<h3 id="2-编辑-Tomcat-配置文件"><a href="#2-编辑-Tomcat-配置文件" class="headerlink" title="2. 编辑 Tomcat 配置文件"></a>2. 编辑 Tomcat 配置文件</h3><p>为了配置使用 JSSE 的 SSL 连接器，你可能需要清除注释并按照如下的方式来编辑它。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Define a SSL Coyote HTTP/1.1 Connector on port 8443 --&gt;</span><br><span class="line">&lt;Connector</span><br><span class="line">           protocol=&quot;org.apache.coyote.http11.Http11NioProtocol&quot;</span><br><span class="line">           port=&quot;8443&quot; maxThreads=&quot;200&quot;</span><br><span class="line">           scheme=&quot;https&quot; secure=&quot;true&quot; SSLEnabled=&quot;true&quot;</span><br><span class="line">           keystoreFile=&quot;$&#123;user.home&#125;/.keystore&quot; keystorePass=&quot;changeit&quot;</span><br><span class="line">           clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot;/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>一定要确保对所使用的连接器采用正确的属性。BIO、NIO 以及 NIO2 连接器都使用 JSSE，然而APR以及原生的连接器则使用 APR。</p>
-<p><strong>如果在这里，你更改了端口号，那么也应该在 非 SSL 连接器（指的是HTTP和AJP的两个链接器）的 redirectPort 属性值。从而使 Tomcat 能够根据 Servlet 规范，自动对访问带有安全限制（指定需要 SSL）页面的用户进行重定向。</strong></p>
-<p>配置完全部信息后，你应该像往常一样，重新启动 Tomcat，从而能够利用 SSL 来访问任何 Tomcat 所支持的 Web 应用了。比如：</p>
-<p><code>https://localhost:8443/</code></p>
-
+<p>二、按照作用域来分，Linux环境变量可以分为：</p>
+<p>1、系统环境变量：系统环境变量对该系统中所有用户都有效。</p>
+<p>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
+<p>Linux设置环境变量的方法</p>
+<p>一、在/etc/profile文件中添加变量 对所有用户生效（永久的）</p>
+<p>用vim在文件/etc/profile文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。</p>
+<p>例如：编辑/etc/profile文件，添加CLASSPATH变量</p>
+<pre><code>vim /etc/profile    
+export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</code></pre><p>注意：修改文件后要想马上生效还要运行source /etc/profile不然只能在下次重进此用户时生效，当此命令行无效时，则将电脑重启。</p>
+<p>二、在用户目录下的.bash_profile文件中增加变量 【对单一用户生效（永久的）】</p>
+<p>用vim ~/.bash_profile文件中增加变量，改变量仅会对当前用户有效，并且是“永久的”。</p>
+<pre><code>vim ~/.bash.profile
+export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</code></pre><p>注意：修改文件后要想马上生效还要运行$ source ~/.bash_profile不然只能在下次重进此用户时生效。</p>
+<p>三、直接运行export命令定义变量 【只对当前shell（BASH）有效（临时的）】</p>
+<p>在shell的命令行下直接使用export 变量名=变量值</p>
+<p>定义变量，该变量只在当前的shell（BASH）或其子shell（BASH）下是有效的，shell关闭了，变量也就失效了，再打开新shell时就没有这个变量，需要使用的话还需要重新定义。</p>
+<p>Linux环境变量使用</p>
+<p>一、Linux中常见的环境变量有：</p>
+<p>PATH：指定命令的搜索路径</p>
+<pre><code>PATH声明用法：
+PATH=$PAHT:&lt;PATH 1&gt;:&lt;PATH 2&gt;:&lt;PATH 3&gt;:--------:&lt; PATH n &gt;
+export PATH
+你可以自己加上指定的路径，中间用冒号隔开。环境变量更改后，在用户下次登陆时生效。
+可以利用echo $PATH查看当前当前系统PATH路径。</code></pre><p>HOME：指定用户的主工作目录（即用户登陆到Linux系统中时，默认的目录）。</p>
+<p>HISTSIZE：指保存历史命令记录的条数。</p>
+<p>LOGNAME：指当前用户的登录名。</p>
+<p>HOSTNAME：指主机的名称，许多应用程序如果要用到主机名的话，通常是从这个环境变量中来取得的</p>
+<p>SHELL：指当前用户用的是哪种Shell。</p>
+<p>LANG/LANGUGE：和语言相关的环境变量，使用多种语言的用户可以修改此环境变量。</p>
+<p>MAIL：指当前用户的邮件存放目录。</p>
+<p>注意：上述变量的名字并不固定，如HOSTNAME在某些Linux系统中可能设置成HOST</p>
+<p>二、Linux也提供了修改和查看环境变量的命令，下面通过几个实例来说明：</p>
+<pre><code>echo 显示某个环境变量值 echo $PATH
+export 设置一个新的环境变量 export HELLO=”hello” (可以无引号)
+env 显示所有环境变量
+set 显示本地定义的shell变量
+unset 清除环境变量 unset HELLO
+readonly 设置只读环境变量 readonly HELLO</code></pre>
       
     </div>
     
@@ -387,7 +404,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -400,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/04/log4j配置/" rel="next" title="log4j配置">
-                <i class="fa fa-chevron-left"></i> log4j配置
+              <a href="/2018/07/06/Tomcat配置自签SSL/" rel="next" title="Tomcat配置自签SSL">
+                <i class="fa fa-chevron-left"></i> Tomcat配置自签SSL
               </a>
             
           </div>
@@ -410,8 +427,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/31/Linux环境变量总结/" rel="prev" title="Linux环境变量总结">
-                Linux环境变量总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/25/线程安全型/" rel="prev" title="线程安全性">
+                线程安全性 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -464,17 +481,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -536,22 +544,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat配置自签SSL"><span class="nav-number">1.</span> <span class="nav-text">Tomcat配置自签SSL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-准备证书密钥存储库"><span class="nav-number">1.1.</span> <span class="nav-text">1. 准备证书密钥存储库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-编辑-Tomcat-配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">2. 编辑 Tomcat 配置文件</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
