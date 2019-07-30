@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="系统结构,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="位，字节，整数位级运算位与–&amp;gt;$，位或–&amp;gt;|，取反–&amp;gt;~，异或–&amp;gt;^  位级运算顾名思义就是对一个bit进行运算，并且涉及到每一个bit的运算，缺一不可。  位级运算作用的数据有以下几个特点：  只作用于整型数据，不能用在浮点数上。 所有的参数必须都是bit向量。 对每个bit进行位运算。  比如，首先需要将16进行转为2进制，然后再进行位运算  逻辑运算与：&amp;amp;&amp;a">
+<meta name="keywords" content="系统结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="位，字节，整数">
+<meta property="og:url" content="https://guozhoubo.github.io/2018/05/17/位，字节，整数/index.html">
+<meta property="og:site_name" content="Code Deep">
+<meta property="og:description" content="位，字节，整数位级运算位与–&amp;gt;$，位或–&amp;gt;|，取反–&amp;gt;~，异或–&amp;gt;^  位级运算顾名思义就是对一个bit进行运算，并且涉及到每一个bit的运算，缺一不可。  位级运算作用的数据有以下几个特点：  只作用于整型数据，不能用在浮点数上。 所有的参数必须都是bit向量。 对每个bit进行位运算。  比如，首先需要将16进行转为2进制，然后再进行位运算  逻辑运算与：&amp;amp;&amp;a">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1532334203349.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1532334302225.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522052783263.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522053221485.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522053542462.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522121158202.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522121298346.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522121383118.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522121585907.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522127579930.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522128129027.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522128306415.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522128402479.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522206833898.png">
+<meta property="og:image" content="https://guozhoubo.github.io/images/1522207033942.png">
+<meta property="og:updated_time" content="2019-07-30T07:29:56.357Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="位，字节，整数">
+<meta name="twitter:description" content="位，字节，整数位级运算位与–&amp;gt;$，位或–&amp;gt;|，取反–&amp;gt;~，异或–&amp;gt;^  位级运算顾名思义就是对一个bit进行运算，并且涉及到每一个bit的运算，缺一不可。  位级运算作用的数据有以下几个特点：  只作用于整型数据，不能用在浮点数上。 所有的参数必须都是bit向量。 对每个bit进行位运算。  比如，首先需要将16进行转为2进制，然后再进行位运算  逻辑运算与：&amp;amp;&amp;a">
+<meta name="twitter:image" content="https://guozhoubo.github.io/images/1532334203349.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://guozhoubo.github.io/2018/05/17/位，字节，整数/">
+
+
+
+
+
+  <title>位，字节，整数 | Code Deep</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Code Deep</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://guozhoubo.github.io/2018/05/17/位，字节，整数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="guo_sming">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/assets/img/路飞.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Code Deep">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">位，字节，整数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T15:21:52+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深入理解计算机系统/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解计算机系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="位，字节，整数"><a href="#位，字节，整数" class="headerlink" title="位，字节，整数"></a>位，字节，整数</h2><h3 id="位级运算"><a href="#位级运算" class="headerlink" title="位级运算"></a>位级运算</h3><p>位与–&gt;$，位或–&gt;|，取反–&gt;~，异或–&gt;^ </p>
+<p>位级运算顾名思义就是对一个bit进行运算，并且涉及到每一个bit的运算，缺一不可。</p>
+<p><img src="/images/1532334203349.png" alt></p>
+<p>位级运算作用的数据有以下几个特点：</p>
+<ul>
+<li>只作用于整型数据，不能用在浮点数上。</li>
+<li>所有的参数必须都是bit向量。</li>
+<li>对每个bit进行位运算。</li>
+</ul>
+<p>比如，首先需要将16进行转为2进制，然后再进行位运算</p>
+<p><img src="/images/1532334302225.png" alt></p>
+<h3 id="逻辑运算"><a href="#逻辑运算" class="headerlink" title="逻辑运算"></a>逻辑运算</h3><p>与：&amp;&amp;，或||，非！。</p>
+<p>主要有以下几个特点：</p>
+<ul>
+<li>将0视为false。</li>
+<li>非0即为true。</li>
+<li>只返回0或1。</li>
+<li>提早终止。（若第一个参数求值就能确认表达式结果的话，就不会对第二个参数求值）<a id="more"></a>
+比如：</li>
+</ul>
+<p><img src="/images/1522052783263.png" alt></p>
+<p>上面的例子充分说明了逻辑运算的特点：非0即为true，最终结果只返回0或1。</p>
+<h3 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h3><p>左移：此时算术左移与逻辑左移运算法则相同，即在右端添加与移位数目相同的0。</p>
+<p>右移：</p>
+<p>逻辑右移：在左端添加与移位数目相同的0。</p>
+<p>算术右移：在左端添加最高位的值，个数与移位数目相同。</p>
+<p>比如：</p>
+<p><img src="/images/1522053221485.png" alt></p>
+<h3 id="整数的编码"><a href="#整数的编码" class="headerlink" title="整数的编码"></a>整数的编码</h3><p>原码表示法：只能用来表示非负数。</p>
+<p>补码表示法：最高位用来表示符号，可以用来表示负数、零和正数。</p>
+<p>补码表示的二进制转为十进制：</p>
+<p><img src="/images/1522053542462.png" alt></p>
+<p>以下特点：</p>
+<ul>
+<li>|TMin（有符号数最小值）| = TMax（有符号数最大值） + 1</li>
+<li>UMax（无符号数最大值） = 2 * TMax + 1</li>
+</ul>
+<h3 id="有符号数与无无符号数的转化"><a href="#有符号数与无无符号数的转化" class="headerlink" title="有符号数与无无符号数的转化"></a>有符号数与无无符号数的转化</h3><p>目前一般机器都是采用补码形式，所以编程语言默认使用的就是有符号数，如要使用无无符号数则需要显示的声明为无符号数。</p>
+<p>两者之间的转化有以下特点：</p>
+<ul>
+<li>位级上的数值不变。</li>
+<li>语义发生变化，即最高位在负权值和正权值之间转换，从而影响最终的值。</li>
+</ul>
+<p><img src="/images/1522121158202.png" alt></p>
+<h3 id="强转"><a href="#强转" class="headerlink" title="强转"></a>强转</h3><ul>
+<li>显示强转</li>
+</ul>
+<p><img src="/images/1522121298346.png" alt></p>
+<ul>
+<li>隐式强转</li>
+</ul>
+<p><img src="/images/1522121383118.png" alt></p>
+<ul>
+<li><p>表达式求值</p>
+<ul>
+<li>当表达式中同时存在无符号数和有符号数时，<strong>那么此时需要将有符号数化为无符号数再进行计算</strong>。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>注意在编程语言中，如没有显示指明为无符号数的话，那么都是有符号数进行计算。</li>
+</ul>
+<ul>
+<li><p><strong>包括比较操作符</strong>：&lt;,&gt;,==,&lt;=,&gt;=。<img src="/images/1522121585907.png" alt></p>
+<p>​</p>
+</li>
+</ul>
+<h3 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h3><ul>
+<li>无符号数在递减过程中，一旦变为负数时，将会<strong>转为对应的无符号数</strong>，从而使循环无法停止。</li>
+</ul>
+<p><img src="/images/1522127579930.png" alt></p>
+<h3 id="数字的扩展与截断"><a href="#数字的扩展与截断" class="headerlink" title="数字的扩展与截断"></a>数字的扩展与截断</h3><p><strong>扩展</strong>：从w位扩展为w+k位，最后的值保持不变。在代码中，就是短整型转为长整型。</p>
+<ol>
+<li>有符号数：在最高位复制原先最高位的值k个。</li>
+<li>无符号数：在最高位添加k个0。</li>
+</ol>
+<p><img src="/images/1522128129027.png" alt></p>
+<p><strong>截断</strong>：从w+k位截断为k位。在代码中，就是长整型转为短整型。</p>
+<ul>
+<li>规则：丢弃最高k位。</li>
+<li><strong>注意</strong>：截断之后，值可能发生变化，不再与之前的一致，这里需要特别注意。</li>
+</ul>
+<p><img src="/images/1522128306415.png" alt></p>
+<p><img src="/images/1522128402479.png" alt></p>
+<h3 id="无符号数加法"><a href="#无符号数加法" class="headerlink" title="无符号数加法"></a>无符号数加法</h3><ul>
+<li>逢二进一，若两数之和的位数比之前的多了一位，则丢弃那一位。</li>
+</ul>
+<p><img src="/images/1522206833898.png" alt></p>
+<h3 id="补码加法"><a href="#补码加法" class="headerlink" title="补码加法"></a>补码加法</h3><ul>
+<li>位级上的运算与无符号加法一致，剩下的位数，用补码语义进行计算。</li>
+<li>正溢出：两数之和&gt;=2^w-1，计算结果变为负数，这是截断位数导致。</li>
+<li>负溢出：两数之和&lt;2^w-1，计算结果变为正数，这是截断位数导致。</li>
+<li><strong>结论</strong>：在编程的时候需要注意算术运算导致的结果溢出情况，得了解每个数据类型所能表示的数值范围。</li>
+</ul>
+<p><img src="/images/1522207033942.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/系统结构/" rel="tag"># 系统结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/18/Vim的简单实用命令/" rel="next" title="Vim的简单实用命令">
+                <i class="fa fa-chevron-left"></i> Vim的简单实用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/04/log4j配置/" rel="prev" title="log4j配置">
+                log4j配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/assets/img/路飞.jpg" alt="guo_sming">
+            
+              <p class="site-author-name" itemprop="name">guo_sming</p>
+              <p class="site-description motion-element" itemprop="description">Stay Hungry, Stay Foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#位，字节，整数"><span class="nav-number">1.</span> <span class="nav-text">位，字节，整数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位级运算"><span class="nav-number">1.1.</span> <span class="nav-text">位级运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算"><span class="nav-number">1.2.</span> <span class="nav-text">逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移位运算"><span class="nav-number">1.3.</span> <span class="nav-text">移位运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整数的编码"><span class="nav-number">1.4.</span> <span class="nav-text">整数的编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有符号数与无无符号数的转化"><span class="nav-number">1.5.</span> <span class="nav-text">有符号数与无无符号数的转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强转"><span class="nav-number">1.6.</span> <span class="nav-text">强转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要注意的问题"><span class="nav-number">1.7.</span> <span class="nav-text">需要注意的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字的扩展与截断"><span class="nav-number">1.8.</span> <span class="nav-text">数字的扩展与截断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无符号数加法"><span class="nav-number">1.9.</span> <span class="nav-text">无符号数加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补码加法"><span class="nav-number">1.10.</span> <span class="nav-text">补码加法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">guo_sming</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  Hosted by guo_sming</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">
+  Blog</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
